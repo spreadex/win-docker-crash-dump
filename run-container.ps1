@@ -1,10 +1,13 @@
 param($flag="ue")
 
-$dumpFolder = (Get-Item ./Dumps).FullName
+$ErrorActionPreference = "Stop"
+
+$dumpFolder = Join-Path $PSScriptRoot "Dumps"
 if(-not (Test-Path $dumpFolder)){
     New-Item $dumpFolder -ItemType Directory
 }
 
+Write-Host "Deleting $dumpFolder"
 Get-ChildItem $dumpFolder | Remove-Item -Force
 
 if((docker ps -a --filter name=crash-test) -is [array]){
