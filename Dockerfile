@@ -3,8 +3,8 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["CrashTest.csproj", "CrashTest/"]
-RUN dotnet restore "CrashTest\CrashTest.csproj"
+COPY ["CrashTest.csproj", "."]
+RUN dotnet restore "CrashTest.csproj"
 COPY . .
 WORKDIR "/src"
 RUN dotnet build "CrashTest.csproj" -c Release -o /app/build
