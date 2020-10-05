@@ -16,7 +16,7 @@ if((docker ps -a --filter name=crash-test) -is [array]){
 
 docker run -e FLAGGS=$flag -v "$($dumpFolder):c:\Dumps" --name crash-test crash-test
 
-if((Get-ChildItem ./Dumps) -ne $null){
+if($null -ne (Get-ChildItem $dumpFolder)){
     Write-Host "Dump created :)" -ForegroundColor Green
 } else {
     Write-Host "No dump created :(" -ForegroundColor Red
